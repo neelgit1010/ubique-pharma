@@ -10,8 +10,10 @@ const Footer = () => {
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Our Rooms", path: "/rooms" },
-    { name: "Testimonials", path: "/testimonials" },
+    { name: "Our Products", path: "/products" },
+    { name: "Career", path: "/career" },
+    { name: "Investor", path: "/investor" },
+    { name: "Marketing", path: "/marketing" },
     { name: "Contact Us", path: "/contact" },
   ];
 
@@ -39,13 +41,13 @@ const Footer = () => {
   }, [isModalOpen]);
   return (
     <footer className="relative w-full p-6 lg:p-8 border-t-4 border-defined-orange">
+      {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(/foot-img.png)` }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-defined-blue"
       >
-        <div className="absolute inset-0 bg-defined-blue opacity-90"></div>{" "}
       </div>
 
+      {/* Content */}
       <div className="relative z-10 text-white">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col lg:flex-row gap-6">
@@ -55,21 +57,21 @@ const Footer = () => {
               <div className="text-base lg:text-sm text-white">
                 <div className="flex items-center gap-2">
                   <FaWhatsapp />
-                  <span>+91 89209 07973</span>
+                  <span>+91 86175 01527</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FaMobile />
-                  <span>+91 7404943811, 76799 66855, 89209 07973</span>
+                  <span>+91 86175 01527, 0356 1358188</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MdEmail />
-                  <span>levihomestayslg@email.com</span>
+                  <span>info@ubiquepharma.com</span>
                 </div>
                 <div className="flex gap-2 w-full xl:w-[80%]">
                   <IoLocationSharp className="text-lg" />
                   <span>
-                    Punjabi Para, Mission Compound, Shiv Mandir Rd. Siliguri, WB
-                    734001
+                    Solanipuram, Civil Line, Roorkee-247667 (UK) India RO:
+                    Papiva Para. Dabaram-II. Siliguri-734006. (WB) India
                   </span>
                 </div>
               </div>
@@ -107,20 +109,15 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Right Section */}
-            <div className="w-full lg:w-[30%]">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3178.4667864584976!2d88.4333205!3d26.725386399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4415c197875e7%3A0xb069b8c0fcfa1289!2sLevi%20Home!5e1!3m2!1sen!2sin!4v1739612837939!5m2!1sen!2sin"
-                loading="lazy"
-                className="rounded-lg w-full h-[10rem] lg:h-[12rem]"
-              ></iframe>
-
-              <button
-                onClick={toggleBookingModal}
-                className="bg-defined-green text-white text-lg py-2 w-full mt-3 rounded"
-              >
-                Pay Now
-              </button>
+            {/* Right Section (Image Fix) */}
+            <div className="w-full h-full lg:w-[30%] relative z-20">
+              <Image
+                src={"/images/contact.png"}
+                alt="enq-form"
+                width={500}
+                height={500}
+                className="w-full h-[12rem] object-cover"
+              />
             </div>
           </div>
         </div>
@@ -131,10 +128,7 @@ const Footer = () => {
           <h1>
             © 2025{" "}
             <span className="hover:underline">
-              <Link href="/">
-                {" "}
-               Ubique Pharma
-              </Link>
+              <Link href="/"> Ubique Pharma</Link>
             </span>{" "}
             - All Rights Reserved
           </h1>
@@ -144,31 +138,14 @@ const Footer = () => {
               <a
                 target="_blank"
                 href="https://rebootai.in/"
-                className=" hover:underline"
+                className="hover:underline"
               >
-                {" "}
                 Reboot AI Pvt. Ltd.
               </a>
             </span>
           </h1>
         </div>
       </div>
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50">
-          <div
-            ref={modalRef}
-            className="w-[90%] max-w-md p-6 rounded-lg shadow-lg relative"
-          >
-            <button
-              onClick={toggleBookingModal}
-              className="absolute top-7 rounded-md bg-white p-2 size-8 flex justify-center items-center opacity-55 right-10 z-[80] text-xl text-gray-700 hover:text-red-500"
-            >
-              ✖
-            </button>
-            {/* <CustomerFormCard /> */}
-          </div>
-        </div>
-      )}
     </footer>
   );
 };

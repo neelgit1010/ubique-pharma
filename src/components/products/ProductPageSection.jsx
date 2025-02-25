@@ -1,42 +1,81 @@
 import { useState } from "react";
-import ProductSearch from "../ProductSearch";
-import ProductPageCard from "../cards/ProductPageCard";
+import SlideDown from "react-slidedown";
+import "react-slidedown/lib/slidedown.css";
+import ProductPageCard from "@/components/cards/ProductPageCard";
 
 const ProductPageSection = ({ products }) => {
-   
-  const [search, setSearch] = useState("");
-  const filteredProducts = products.data.filter((product) =>
-    product.brandName.toLowerCase().includes(search.toLowerCase())
-  );
+  const [expand, setExpand] = useState({
+    tablet: true,
+    capsule: true,
+    syrup: true,
+  });
+
+  const toggleExpand = (category) => {
+    setExpand((prev) => ({
+      ...prev,
+      [category]: !prev[category], 
+    }));
+  };
+
+  const categories = [
+    {
+      name: "tablet",
+      filtered: products.data.filter((product) =>
+        product.categoryName.toLowerCase().includes("tablet")
+      ),
+    },
+    {
+      name: "capsule",
+      filtered: products.data.filter((product) =>
+        product.categoryName.toLowerCase().includes("capsule")
+      ),
+    },
+    {
+      name: "syrup",
+      filtered: products.data.filter((product) =>
+        product.categoryName.toLowerCase().includes("syrup")
+      ),
+    },
+  ];
+
   return (
     <section>
-      <ProductSearch setSearch={setSearch} />
-      {/* Products */}
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-defined-brown text-4xl font-semibold">
-          Our Products
-        </h1>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-8">
-          {filteredProducts.map((product) => {
-            return (
-              <ProductPageCard key={product.productId} product={product} />
-            );
-          })}
-        </div>
+      <div className="flex flex-col items-center justify-center gap-4 p-4">
+        {categories.map((category) => (
+          <div
+            key={category.name}
+            className="w-full shadow-lg border-defined-brown mx-auto"
+          >
+            <div
+              onClick={() => toggleExpand(category.name)}
+              className="p-4 cursor-pointer pr-16 relative select-none"
+            >
+              <div className="flex justify-between">
+                <h3 className="font-bold text-xl">
+                  {category.name.toUpperCase()}
+                </h3>
+                <p className="font-bold text-2xl">
+                  {expand[category.name] ? "-" : "+"}
+                </p>
+              </div>
+            </div>
+            <SlideDown className="my-dropdown-slidedown">
+              {expand[category.name] && (
+                <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xlg:grid-cols-4 gap-8 p-4">
+                  {category.filtered.map((product) => (
+                    <ProductPageCard
+                      key={product.productId}
+                      product={product}
+                    />
+                  ))}
+                </div>
+              )}
+            </SlideDown>
+          </div>
+        ))}
       </div>
     </section>
   );
-};
-
-export const getServerSideProps = async () => {
-  const products = await (await fetch(
-    "https://ubiquephermabackend.vercel.app/api/products/get"
-  )).json();
-  return {
-    props: {
-      products,
-    },
-  };
 };
 
 export default ProductPageSection;

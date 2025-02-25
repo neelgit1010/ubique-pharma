@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useProduct } from "@/store/ProductStore";
+import TradeFormCard from "./TradeFormCard";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const OurProductCard = ({product}) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const modalRef = useRef(null);
     const router = useRouter();
     const { setSelectedProduct } = useProduct();
       const handleViewMore = () => {
@@ -10,6 +14,30 @@ const OurProductCard = ({product}) => {
         router.push(`/products/${product._id}`);
       };
 
+        const toggleBookingModal = () => {
+          setIsModalOpen(true);
+        };
+      
+        const closeModal = useCallback(() => {
+          setIsModalOpen(false);
+        }, []);
+      
+        useEffect(() => {
+          const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+              closeModal();
+            }
+          };
+      
+          if (isModalOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+          }
+          return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+          };
+        }, [isModalOpen, closeModal]);
+      
+      
   return (
     <div className="w-[19rem] h-auto flex flex-col gap-2 border shadow-lg rounded group">
       <div className="relative w-full h-auto">
@@ -34,7 +62,10 @@ const OurProductCard = ({product}) => {
         {product.brandName}
       </h1>
       <div className="flex gap-2 p-2">
-        <button className="w-1/2 bg-defined-blue p-2 rounded-md">
+        <button
+          className="w-1/2 bg-defined-blue p-2 rounded-md"
+          onClick={toggleBookingModal}
+        >
           Enquiry Now
         </button>
         <button
@@ -44,6 +75,16 @@ const OurProductCard = ({product}) => {
           View More
         </button>
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50">
+          <div
+            ref={modalRef}
+            className="w-full sm:w-[90%] md:w-[50%] max-w-md p-6 rounded-lg relative"
+          >
+            <TradeFormCard closeModal={closeModal} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

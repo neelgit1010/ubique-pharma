@@ -54,9 +54,8 @@ const ContactUsSection = () => {
                 <div className="flex gap-2 w-full xl:w-[80%]">
                   <IoLocationSharp className="text-defined-orange text-xl" />
                   <span>
-                    Solanipuram, Civil Line, Roorkee-247667 (UK) India{" "}
-                    <br className="hidden md:block" /> RO: Papiva Para.
-                    Dabaram-II. Siliguri-734006. (WB) India
+                    Solanipuram, Civil Line, Roorkee-247667 (UK) India RO:
+                    Papiva Para. Dabaram-II. Siliguri-734006. (WB) India
                   </span>
                 </div>
               </div>

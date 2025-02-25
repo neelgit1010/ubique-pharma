@@ -13,17 +13,82 @@ const CareerSection = () => {
         />
 
         <p className="text-defined-brown p-4 text-lg">
-          Join Ubique Pharma, a leading pharmaceutical manufacturer committed to
-          innovation, quality, and global health. Since 2014, we have been
-          dedicated to producing high-quality, affordable medications across
-          diverse therapeutic areas. <br />At Ubique Pharma, we value talent, foster
-          professional growth, and provide a dynamic work environment. Be part
-          of a team that prioritizes excellence, ethical practices, and
-          community well-being. Shape the future of healthcare with us—where
-          your career makes a difference. Explore opportunities today!
+          If you share Ubique Pharma's core values of trust, transparency, and
+          integrity, and are eager to build a rewarding career with us, we
+          encourage you to send your CV to{" "}
+          <a
+            href="mailto:info@ubiquepharma.com"
+            className="text-defined-blue underline"
+          >
+            info@ubiquepharma.com
+          </a>{" "}
+          or apply online. By doing so, you will have the opportunity to place
+          your information in our database for both current and future career
+          opportunities. Join us in contributing to a brighter future in
+          healthcare.
         </p>
 
         {/* Form TODO */}
+        <div className="flex flex-col gap-4 p-4">
+
+          <div className="w-full h-auto relative">
+            <Image
+              src={"/images/enq-form.png"}
+              alt="enq-form"
+              width={500}
+              height={500}
+              className="w-full h-[40rem] object-cover rounded"
+            />
+
+            <div className="absolute inset-0 w-full h-full bg-defined-blue opacity-30"></div>
+
+            <div className="absolute inset-0 w-full h-auto flex flex-col gap-2">
+              <form className="w-[90%] mx-auto py-4 md:py-16 flex flex-col md:gap-8 gap-2">
+                <div className="flex flex-col md:flex-row gap-4">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className="w-full md:w-1/2 p-3 md:p-4 rounded"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Mobile No."
+                    className="w-full md:w-1/2 p-3 md:p-4 rounded"
+                  />
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    className="w-full md:w-1/2 p-3 md:p-4 rounded"
+                  />
+                  <select
+                    name="role"
+                    id=""
+                    className="w-full md:w-1/2 p-3 md:p-4 rounded"
+                  >
+                    <option value="MR">MR</option>
+                    <option value="ASM">ASM</option>
+                    <option value="RSM">RSM </option>
+                    <option value="ZSM">ZSM </option>
+                    <option value="Office Staff">Office Staff </option>
+                    <option value="Others">Others </option>
+                  </select>
+                </div>
+                <textarea
+                  name="requirement"
+                  id=""
+                  rows={"4"}
+                  placeholder="Requirement"
+                  className="w-full p-3 md:p-4 rounded"
+                />
+                <button className="bg-defined-orange text-white p-4 rounded">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

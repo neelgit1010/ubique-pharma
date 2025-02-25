@@ -1,5 +1,3 @@
-import AboutPageCard from "./cards/AboutPageCard";
-
 const AboutUs = () => {
   const content = [
     {
@@ -19,48 +17,49 @@ const AboutUs = () => {
       desc: "U47721WB2023PTC260267",
     },
   ];
-  const info = [
-    {
-      name: "Nisha Barman",
-      role: "Director",
-    },
-    {
-      name: "Jaya Debsarma Barman",
-      role: "Director",
-    },
-    {
-      name: "Sitesh Sarkar",
-      role: "Blank",
-    },
-  ];
+
   return (
     <div className="flex flex-col gap-4 p-8">
       <h1 className="text-defined-brown text-4xl font-semibold">About Us</h1>
       <p>
-        Ubique embarked on its mission with a core commitment to enhancing
-        health and well-being. Since our inception, we have dedicated ourselves
-        to delivering high-quality, affordable medications across a
-        comprehensive range of drug dosage schedules. Founded in 2014, Ubique
-        has always been driven by the vision of fostering a healthier society.
-        We initially focused on Calcium, Vitamins, and various specialty areas,
-        and over time, we have broadened our scope into new fields. Looking
-        ahead, we plan to launch the Ubique Human Welfare Foundation, further
-        strengthening our Corporate Social Responsibility (CSR) efforts and
-        supporting both privileged and underserved communities. At Ubique, we
-        take immense pride in our dedication to exceptional customer care, our
-        employees’ professional growth, and an unwavering commitment to quality.
-        We understand that well-being goes beyond medicine—it is about ensuring
-        that healthcare remains accessible, reliable, and effective for all.
-        Innovation and integrity remain at the heart of our operations. By
-        continuously improving our formulations, expanding research, and
-        upholding stringent quality control measures, we ensure that every
-        product meets the highest industry standards. Our commitment extends
-        beyond business, as we actively seek opportunities to contribute
-        positively to the communities we serve. <br />
-        As we look to the future, Ubique remains steadfast in its mission—to
-        enhance lives through groundbreaking healthcare solutions, social
-        responsibility, and an enduring promise to create a healthier tomorrow
-        for all.
+        Ubique Pharma Pvt. Ltd. is a rapidly growing pharmaceutical company
+        engaged in a diverse range of businesses, including the marketing,
+        export, and supply of pharmaceutical products, nutraceutical
+        supplements, and third-party manufacturing services both domestically
+        and internationally. We are committed to providing products of the
+        highest quality and efficacy, sourced from facilities certified by WHO,
+        GMP, ISO 9001:2015 and ISO 22000:2018 certification. These facilities
+        are operated by a highly skilled and knowledgeable team dedicated to
+        adhering to rigorous quality systems, ensuring the delivery of
+        world-class products that meet global standards. Our commitment to
+        excellence extends beyond manufacturing, as we continuously strive to
+        meet the evolving needs of the healthcare industry. We prioritize
+        innovation, sustainability, and customer satisfaction, making sure our
+        products are not only effective but also safe for all users. With a
+        strong focus on research and development, we aim to introduce new and
+        advanced solutions that enhance well-being worldwide. Ubique Pharma Pvt.
+        Ltd. is poised to continue expanding its global footprint, building
+        long-term partnerships, and contributing to the global healthcare
+        landscape through quality and innovation.
+      </p>
+
+      <h1 className="text-defined-brown text-4xl font-semibold">
+        Our Mission and Vision
+      </h1>
+      <p>
+        Our vision is to be a leading global pharmaceutical company, recognized
+        for our commitment to excellence in product quality, innovation, and
+        customer satisfaction. We aspire to create a healthier world by offering
+        cutting-edge healthcare solutions, expanding access to essential
+        medicines, and fostering sustainable growth in the pharmaceutical
+        industry. We aim to build strong, long-lasting partnerships and make a
+        meaningful impact on global health. Our mission is to enhance global
+        health by providing high-quality, affordable pharmaceutical products and
+        nutraceutical supplements. We aim to deliver safe, effective, and
+        innovative healthcare solutions that improve the well-being of
+        individuals worldwide. Through continuous research, development, and
+        collaboration, we strive to meet the evolving needs of our customers
+        while maintaining the highest standards of quality and integrity.
       </p>
 
       <div className="w-full h-full border flex flex-wrap">
@@ -81,12 +80,6 @@ const AboutUs = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-        {info.map((item, index) => (
-          <AboutPageCard info={item} key={index} />
-        ))}
       </div>
     </div>
   );

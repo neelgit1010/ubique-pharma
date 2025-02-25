@@ -2,13 +2,15 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useProduct } from "@/store/ProductStore";
 
-const ProdCatCard = ({ product }) => {
-   const router = useRouter();
-   const { setSelectedProduct } = useProduct();
-   const handleViewMore = () => {
-     setSelectedProduct(product); // Store product in context
-     router.push(`/products/${product._id}`);
-   };
+const ProdCatCard = ({ product, toggleBookingModal }) => {
+  const router = useRouter();
+  const { setSelectedProduct } = useProduct();
+
+  const handleViewMore = () => {
+    setSelectedProduct(product);
+    router.push(`/products/${product._id}`);
+  };
+
   return (
     <div className="flex flex-col gap-2 items-center justify-center w-full">
       <div className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full relative group overflow-hidden border border-gray-300 flex justify-center items-center">
@@ -23,7 +25,10 @@ const ProdCatCard = ({ product }) => {
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity duration-300 ease-in-out rounded-full"></div>
 
         <div className="absolute inset-0 flex flex-col gap-2 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-full">
-          <button className="bg-defined-green text-white px-3 py-1 rounded-full text-sm">
+          <button
+            className="bg-defined-green text-white px-3 py-1 rounded-full text-sm"
+            onClick={() => toggleBookingModal(product)}
+          >
             Enquiry Now
           </button>
           <button

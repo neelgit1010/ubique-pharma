@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
+import TradeFormCard from "../cards/TradeFormCard";
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -25,40 +26,45 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleBookingModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+   const toggleBookingModal = () => {
+     setIsModalOpen((prev) => !prev);
+     console.log("Toggle Modal Clicked: ", !isModalOpen);
+   };
 
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 60);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+   const closeModal = useCallback(() => {
+     console.log("closeModal function triggered");
+     setIsModalOpen(false);
+   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setIsModalOpen(false);
-      }
-    };
+    useEffect(() => {
+      let ticking = false;
+      const handleScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            setScrolled(window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-    if (isModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+   useEffect(() => {
+     const handleClickOutside = (event) => {
+       if (modalRef.current && !modalRef.current.contains(event.target)) {
+         closeModal();
+       }
+     };
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isModalOpen]);
+     if (isModalOpen) {
+       document.addEventListener("mousedown", handleClickOutside);
+     }
+     return () => {
+       document.removeEventListener("mousedown", handleClickOutside);
+     };
+   }, [isModalOpen, closeModal]);
 
   return (
     <header>
@@ -133,25 +139,15 @@ const Header = () => {
             onClick={toggleBookingModal}
             className="bg-defined-green text-white py-2 px-8 rounded-full w-full transition-all duration-300 font-semibold hover:bg-gray-800"
           >
-            Book Appointment
+            Trade Enquiry
           </button>
         </div>
       </div>
 
-      {isModalOpen && (
+       {isModalOpen && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50">
-          <div
-            ref={modalRef}
-            className=" w-[90%] max-w-md p-6 rounded-lg shadow-lg relative"
-          >
-            <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black bg-opacity-50">
-              <button
-                onClick={toggleBookingModal}
-                className="absolute top-7 rounded-md bg-white p-2 size-8 flex justify-center items-center opacity-55 right-10 z-[80] text-xl text-gray-700 hover:text-red-500"
-              >
-                ✖
-              </button>
-            </div>
+          <div ref={modalRef} className="w-full sm:w-[90%] md:w-[50%] max-w-md p-6 rounded-lg relative ">
+            <TradeFormCard closeModal={closeModal} />
           </div>
         </div>
       )}

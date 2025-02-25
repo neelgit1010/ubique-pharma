@@ -3,11 +3,13 @@ import AboutSection from "../components/home/AboutSection";
 import ProductSection from "../components/home/ProductSection";
 import EnquiryFormSection from "@/components/home/EnquiryFormSection";
 import ProductCategorySection from "../components/home/ProductCategorySection";
+import HomeSlider from "../components/home/HomeSlider";
 
 export default function Home({ products }) {
   return (
     <>
       <MainTemplate>
+        <HomeSlider />
         <ProductCategorySection products={products} />
         <AboutSection />
         <ProductSection products={products} />

@@ -1,8 +1,35 @@
 import { useProduct } from "@/store/ProductStore";
 import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
+import TradeFormCard from "../cards/TradeFormCard";
 const ProductDetails = () => {
   const { selectedProduct } = useProduct();
-  console.log(selectedProduct);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+    const modalRef = useRef(null);
+  
+  const toggleBookingModal = () => {
+      setIsModalOpen((prev) => !prev);
+    };
+  
+    const closeModal = useCallback(() => {
+      setIsModalOpen(false);
+    }, []);
+  
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          closeModal();
+        }
+      };
+  
+      if (isModalOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+      }
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isModalOpen, closeModal]);
+  
   const content = [
     { desc: selectedProduct?.productPrice, heading: "MRP" },
     {
@@ -56,9 +83,12 @@ const ProductDetails = () => {
 
             <div className="flex gap-2 p-2 text-white">
               <button className="w-1/2 md:w-[25%] bg-defined-green p-2 rounded-md">
-                Request to Call
+                <a href="tel:+918617501527">Request to Call</a>
               </button>
-              <button className="w-1/2 md:w-[25%] bg-defined-orange p-2 rounded-md">
+              <button
+                className="w-1/2 md:w-[25%] bg-defined-orange p-2 rounded-md"
+                onClick={toggleBookingModal}
+              >
                   Send Enquiry
               </button>
             </div>
@@ -84,26 +114,37 @@ const ProductDetails = () => {
                   );
                 })}
               </p>
-                <p>Product Price : {selectedProduct?.productPrice}</p>
-                <p>Pack Size: {selectedProduct?.packagingsizeName}</p>
-                <p>PTR: {selectedProduct?.productptr}</p>
-                <p>
-                  PTS :{" "}
-                  {selectedProduct?.productpts === ""
-                    ? "NA"
-                    : selectedProduct?.productpts}{" "}
-                </p>
-                <p
-                  className={`${
-                    selectedProduct?.active ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  Status :{" "}
-                  {selectedProduct?.active ? "Available" : "Not Available"}
-                </p>
+              <p>Product Price : {selectedProduct?.productPrice}</p>
+              <p>Pack Size: {selectedProduct?.packagingsizeName}</p>
+              <p>PTR: {selectedProduct?.productptr}</p>
+              <p>
+                PTS :{" "}
+                {selectedProduct?.productpts === ""
+                  ? "NA"
+                  : selectedProduct?.productpts}{" "}
+              </p>
+              <p
+                className={`${
+                  selectedProduct?.active ? "text-green-600" : "text-red-600"
+                }`}
+              >
+                Status :{" "}
+                {selectedProduct?.active ? "Available" : "Not Available"}
+              </p>
             </div>
           </div>
         </div>
+
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50">
+            <div
+              ref={modalRef}
+              className="w-full sm:w-[90%] md:w-[50%] max-w-md p-6 rounded-lg relative "
+            >
+              <TradeFormCard closeModal={closeModal} />
+            </div>
+          </div>
+        )}
 
         {/* form */}
         <div className="flex flex-col gap-4 p-4">
@@ -130,7 +171,7 @@ const ProductDetails = () => {
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                   <input
-                    type="tel"
+                    type="number"
                     placeholder="Mobile No."
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
