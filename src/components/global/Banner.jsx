@@ -15,7 +15,7 @@ const Banner = () => {
       const isProductPage = router.pathname.startsWith("/products/");
       title = isProductPage ? "Our Products" : pageData[ router.pathname]?.title;
   return (
-    <div className="w-full h-[30vh] relative">
+    <div className="w-full h-[10rem] relative">
       <Image
         src={"/banner.jpg"}
         alt="product form"

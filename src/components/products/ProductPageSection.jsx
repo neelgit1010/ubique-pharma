@@ -59,7 +59,7 @@ const ProductPageSection = ({ products }) => {
             </div>
             <div
               className={`transition-[max-height] duration-500 overflow-hidden ${
-                expand[category.name] ? "max-h-[1000px]" : "max-h-0"
+                expand[category.name] ? "max-h-auto" : "max-h-0"
               }`}
             >
               <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xlg:grid-cols-4 gap-8 p-4">

@@ -38,14 +38,14 @@ const ProductPageCard = ({ product }) => {
   }, [isModalOpen, closeModal]);
 
   return (
-    <div className="w-[19rem] h-auto flex flex-col gap-2 border shadow-lg rounded">
+    <div className="w-auto h-auto flex flex-col gap-2 border shadow-lg rounded">
       <div className="w-full h-auto">
         <Image
           src={product.productImage.secure_url}
           alt="products"
           width={500}
           height={500}
-          className="w-full h-[15rem] object-cover"
+          className="w-full h-auto object-cover"
         />
       </div>
 
