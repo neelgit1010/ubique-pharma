@@ -1,6 +1,4 @@
 import { useState } from "react";
-import SlideDown from "react-slidedown";
-import "react-slidedown/lib/slidedown.css";
 import ProductPageCard from "@/components/cards/ProductPageCard";
 
 const ProductPageSection = ({ products }) => {
@@ -13,7 +11,7 @@ const ProductPageSection = ({ products }) => {
   const toggleExpand = (category) => {
     setExpand((prev) => ({
       ...prev,
-      [category]: !prev[category], 
+      [category]: !prev[category],
     }));
   };
 
@@ -59,18 +57,17 @@ const ProductPageSection = ({ products }) => {
                 </p>
               </div>
             </div>
-            <SlideDown className="my-dropdown-slidedown">
-              {expand[category.name] && (
-                <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xlg:grid-cols-4 gap-8 p-4">
-                  {category.filtered.map((product) => (
-                    <ProductPageCard
-                      key={product.productId}
-                      product={product}
-                    />
-                  ))}
-                </div>
-              )}
-            </SlideDown>
+            <div
+              className={`transition-[max-height] duration-500 overflow-hidden ${
+                expand[category.name] ? "max-h-[1000px]" : "max-h-0"
+              }`}
+            >
+              <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xlg:grid-cols-4 gap-8 p-4">
+                {category.filtered.map((product) => (
+                  <ProductPageCard key={product.productId} product={product} />
+                ))}
+              </div>
+            </div>
           </div>
         ))}
       </div>
