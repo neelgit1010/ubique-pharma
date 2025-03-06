@@ -31,7 +31,7 @@ const EnquiryFormCard = () => {
     *Message:* ${formData.message}`;
    message = encodeURIComponent(message);
 
-   const dest = "+917439972241";
+   const dest = "+918617501527";
    const baseUrl = isMobile
      ? "https://api.whatsapp.com/send"
      : "https://web.whatsapp.com/send";
