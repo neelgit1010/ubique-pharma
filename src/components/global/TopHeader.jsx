@@ -19,23 +19,23 @@ const TopHeader = () => {
           >
             <MdEmail size={20} className="text-white" />
             <span>info@ubiquepharma.com</span>
-            <span>GSTIN: 19AAFFU0535M1ZV</span>
           </Link>
+            <span className="font-semibold">GSTIN: 19AAFFU0535M1ZV</span>
         </div>
         <div className="flex gap-4 sm:px-4 md:px-6 sm:text-xs lg:text-sm xlg:text-base">
           <div className="flex items-center gap-4">
-            <Link href={"https://g.co/kgs/j7CEuFi"}>
-              <FaGoogle size={20} className="text-white" />
-            </Link>
-            <Link
+            {/* <Link href={"https://g.co/kgs/j7CEuFi"}> */}
+            <FaGoogle size={20} className="text-white" />
+            {/* </Link> */}
+            {/* <Link
               href={"https://www.facebook.com/profile.php?id=61552532951608#"}
-            >
-              <FaFacebook size={20} className="text-white" />
-            </Link>
-            <Link href={"https://www.instagram.com/primediagnostics_salbari/"}>
-              <AiFillInstagram size={20} className="text-white" />
-            </Link>
-            <Link href={"https://www.instagram.com/primediagnostics_salbari/"}>
+            > */}
+            <FaFacebook size={20} className="text-white" />
+            {/* </Link> */}
+            {/* <Link href={"https://www.instagram.com/primediagnostics_salbari/"}> */}
+            <AiFillInstagram size={20} className="text-white" />
+            {/* </Link> */}
+            <Link href={"https://wa.me/918617501527"}>
               <FaWhatsapp size={20} className="text-white" />
             </Link>
           </div>

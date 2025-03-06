@@ -6,6 +6,47 @@ const ProductDetails = () => {
   const { selectedProduct } = useProduct();
    const [isModalOpen, setIsModalOpen] = useState(false);
     const modalRef = useRef(null);
+
+    const [formData, setFormData] = useState({});
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (
+        !formData.name ||
+        !formData.mobile ||
+        !formData.quantity ||
+        !formData.email ||
+        !formData.purpose ||
+        !formData.location ||
+        !formData.message
+      ) {
+        alert("Please fill all the fields");
+        return;
+      }
+
+      if (formData.mobile.length !== 10) {
+        alert("Please enter a valid mobile number");
+        return;
+      }
+
+      const isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+
+      let message = `*Name:* ${formData.name}
+    *Mobile:* ${formData.mobile}
+    *Quantity:* ${formData.quantity}
+    *Email:* ${formData.email}
+    *Purpose:* ${formData.purpose}
+    *Location:* ${formData.location}
+    *Message:* ${formData.message}`;
+      message = encodeURIComponent(message);
+
+      const dest = "+917439972241";
+      const baseUrl = isMobile
+        ? "https://api.whatsapp.com/send"
+        : "https://web.whatsapp.com/send";
+
+      const url = `${baseUrl}?phone=${dest}&text=${message}`;
+      window.open(url, "_blank").focus();
+    };
   
   const toggleBookingModal = () => {
       setIsModalOpen((prev) => !prev);
@@ -163,16 +204,20 @@ const ProductDetails = () => {
             <div className="absolute inset-0 w-full h-full bg-defined-blue opacity-30"></div>
 
             <div className="absolute inset-0 w-full h-auto flex flex-col gap-2">
-              <form className="w-[90%] mx-auto py-4 md:py-16 flex flex-col md:gap-8 gap-2">
+              <form onSubmit={handleSubmit} className="w-[90%] mx-auto py-4 md:py-16 flex flex-col md:gap-8 gap-2">
                 <div className="flex flex-col md:flex-row gap-4">
                   <input
                     type="text"
                     placeholder="Name"
+                    name="name"
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                   <input
                     type="number"
                     placeholder="Mobile No."
+                    name="mobile"
+                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                 </div>
@@ -180,11 +225,15 @@ const ProductDetails = () => {
                   <input
                     type="number"
                     placeholder="Quantity"
+                    name="quantity"
+                    onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                   <input
                     type="email"
                     placeholder="Email Id"
+                    name="email"
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                 </div>
@@ -192,22 +241,27 @@ const ProductDetails = () => {
                   <input
                     type="text"
                     placeholder="Purpose"
+                    name="purpose"
+                    onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                   <input
                     type="text"
                     placeholder="Location"
+                    name="location"
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     className="w-full md:w-1/2 p-3 md:p-4 rounded"
                   />
                 </div>
                 <textarea
-                  name="requirement"
+                  name="message"
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   id=""
                   rows={"4"}
-                  placeholder="Requirement"
+                  placeholder="Message"
                   className="w-full p-3 md:p-4 rounded"
                 />
-                <button className="bg-defined-orange text-white p-4 rounded">
+                <button type="submit" className="bg-defined-orange text-white p-4 rounded">
                   Submit
                 </button>
               </form>

@@ -17,6 +17,15 @@ const Footer = () => {
     { name: "Contact Us", path: "/contact" },
   ];
 
+  const quickLinks2 = [
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Our Vision", path: "/about" },
+    { name: "Our Product", path: "/products" },
+    { name: "CSR", path: "/about" },
+    { name: "Contact Us", path: "/contact" },
+  ];
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleBookingModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -42,10 +51,7 @@ const Footer = () => {
   return (
     <footer className="relative w-full p-6 lg:p-8 border-t-4 border-defined-orange">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-defined-blue"
-      >
-      </div>
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-defined-blue"></div>
 
       {/* Content */}
       <div className="relative z-10 text-white">
@@ -57,15 +63,21 @@ const Footer = () => {
               <div className="text-base lg:text-sm text-white">
                 <div className="flex items-center gap-2">
                   <FaWhatsapp />
-                  <span>+91 86175 01527</span>
+                  <Link href={"https://wa.me/918617501527"}>
+                    <span>+91 86175 01527</span>
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   <FaMobile />
-                  <span>+91 86175 01527, 0356 1358188</span>
+                  <Link href={"tel:918617501527"}>
+                    <span>+91 86175 01527, 0356 1358188</span>
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   <MdEmail />
-                  <span>info@ubiquepharma.com</span>
+                  <Link href={"mailto:info@ubiquepharma.com"}>
+                    <span>info@ubiquepharma.com</span>
+                  </Link>
                 </div>
                 <div className="flex gap-2 w-full xl:w-[80%]">
                   <IoLocationSharp className="text-lg" />
@@ -90,19 +102,13 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Our Best Rooms */}
+              {/* Quick Links */}
               <div className="w-1/2">
-                <h1 className="font-bold">Our Best Rooms</h1>
+                <h1 className="font-bold">Quick Links</h1>
                 <ul className="text-white text-sm">
-                  {[
-                    "Deluxe Rooms",
-                    "Standard Room",
-                    "Conference Halls",
-                    "Dormitory",
-                    "Levi's Kitchen",
-                  ].map((item, index) => (
+                  {quickLinks2.map((item, index) => (
                     <li key={index} className="py-1">
-                      <Link href="/rooms">{item}</Link>
+                      <Link href={item.path}>{item.name}</Link>
                     </li>
                   ))}
                 </ul>

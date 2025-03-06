@@ -1,23 +1,40 @@
-import Image from "next/image"
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 const Banner = () => {
-    const router = useRouter();
-      const pageData = {
-        "/contact": { title: "Contact Us" },
-        "/about": { title: "About Us" },
-        "/career": { title: "Career" },
-        "/investor": { title: "Investor" },
-        "/marketing": { title: "Marketing" },
-        "/products": { title: "Our Products" },
-      };
-      let title = pageData[router.pathname] || {};
-      const isProductPage = router.pathname.startsWith("/products/");
-      title = isProductPage ? "Our Products" : pageData[ router.pathname]?.title;
+  const router = useRouter();
+
+  const pageData = {
+    "/contact": "Contact Us",
+    "/about": "About Us",
+    "/career": "Career",
+    "/investor": "Investor",
+    "/marketing": "Marketing",
+    "/products": "Our Products",
+  };
+
+
+  const mfgTitles = {
+    "track-order": "Track Your Order",
+    "product-approval": "Product Approval List",
+    customer: "Customer",
+  };
+
+  let title = pageData[router.pathname] || "Page";
+
+  if (router.pathname.startsWith("/mfg-facility/[facility]")) {
+    const facility = router.query.facility; 
+    title = mfgTitles[facility] || "Mfg. Facility";
+  }
+
+  if (router.pathname.startsWith("/products/")) {
+    title = "Our Products";
+  }
+
   return (
     <div className="w-full h-[10rem] relative">
       <Image
-        src={"/banner.jpg"}
+        src="/banner.jpg"
         alt="product form"
         width={500}
         height={500}
@@ -31,6 +48,6 @@ const Banner = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Banner
+export default Banner;

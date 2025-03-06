@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { FaMobile, FaWhatsapp } from "react-icons/fa";
 import useElementHeight from "@/hooks/useElementHeight";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 const ContactUsSection = () => {
   const [rightSideHeight, leftSideRef] = useElementHeight();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -67,32 +68,36 @@ const ContactUsSection = () => {
                 Contact Information
               </h1>
               <p className="text-sm text-[#777777]">
-                For inquiries or bookings, feel free to reach out through our
-                contact form or visit us directly. We’re here to assist you with
-                any questions about{" "}
-                <span className="text-defined-blue">
-                  Levi Home Guest House & Retreat Centre
-                </span>
-                . Connect with us today and let us make your stay exceptional!
+                Connect with Ubique Pharma Pvt. Ltd. for inquiries,
+                collaborations, or business opportunities. Our team is ready to
+                assist you with pharmaceutical and nutraceutical solutions.
+                Reach us via phone, email, or visit our office - we look forward
+                to partnering for a healthier future!
               </p>
               <div className="text-base lg:text-sm text-defined-blue">
                 <div className="flex items-center gap-2">
                   <FaWhatsapp className="text-defined-orange" />
-                  <span>+91 86175 01527</span>
+                  <Link href={"https://wa.me/918617501527"}>
+                    <span>+91 86175 01527</span>
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   <FaMobile className="text-defined-orange" />
-                  <span>+91 86175 01527</span>
+                  <Link href={"tel:918617501527"}>
+                    <span>+91 86175 01527, 0356 1358188</span>
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   <MdEmail className="text-defined-orange" />
-                  <span>info@ubiquepharma.com </span>
+                  <Link href={"mailto:info@ubiquepharma.com"}>
+                    <span>info@ubiquepharma.com</span>
+                  </Link>
                 </div>
                 <div className="flex gap-2 w-full xl:w-[80%]">
                   <IoLocationSharp className="text-defined-orange text-xl" />
                   <span>
-                    Solanipuram, Civil Line, Roorkee-247667 (UK) India RO:
-                    Papiva Para. Dabaram-II. Siliguri-734006. (WB) India
+                    Solanipuram, Civil Line, Roorkee-247667 (UK) India <br />{" "}
+                    RO: Papiva Para. Dabaram-II. Siliguri-734006. (WB) India
                   </span>
                 </div>
               </div>
@@ -100,8 +105,13 @@ const ContactUsSection = () => {
           </div>
           <div className="w-full h-auto flex flex-col gap-4 md:px-2 md:flex-row">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3178.4667864584976!2d88.4333205!3d26.725386399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4415c197875e7%3A0xb069b8c0fcfa1289!2sLevi%20Home!5e1!3m2!1sen!2sin!4v1739612837939!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12714.549433291602!2d88.462195!3d26.719279!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4414bdc76ad85%3A0xbf8b5a683d7bdd7!2sUBIQUE%20PHARMA%20PVT.%20LTD.!5e1!3m2!1sen!2sin!4v1741190529473!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style={{ border: "0" }}
+              allowFullscreen=""
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
               className="rounded-lg w-full md:w-1/2 h-full"
             ></iframe>
             <Image
